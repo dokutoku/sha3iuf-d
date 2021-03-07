@@ -2,6 +2,7 @@
 	"name": "sha3iuf-d",
 	"description": "sha3iuf written in pure D.",
 	"authors": ["dokutoku"],
+	"homepage": "https://gitlab.com/dokutoku/sha3iuf-d",
 	"copyright": "Copyright © 2021, dokutoku",
 	"license": "MIT",
 	"buildTypes":

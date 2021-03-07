@@ -63,15 +63,13 @@ jobs:
         - name: Show get-dlang hashes
           run: |
             cd ~/get-dlang;
-            openssl sha512 ldc2-version.txt;
-            openssl sha512 template/powershell/install-ldc2.ps1;
+            (Get-ChildItem -Recurse -File).FullName | ForEach-Object { openssl sha512 $_;}
 
         - name: Verify get-dlang files
           run: |
             cd ~/get-dlang;
             Write-Output "-----BEGIN PUBLIC KEY-----`nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA2Mgmj1IMcTe4ZD0nH5Hj`nHTHdcj2S9I8eIpSYl0DdPGzQcLN06eOX+n4MhOo886NQTfBATVAjyGZy500/8JT3`n7wk/we8yRcxAzW18GjUtqiLW8nvSK7tsqPAO8AWJNldYKwM3xTNo0hZW3G5xlkSw`n0ixMlHTffQ2JxPv4xDgBlKUAndzGIPHGhPiPnPbOOS5tOYaWLk3wtXERJpnv4chx`nCNgJc+uY2RTZWQDLCfjJAi4kce+8lkxaIHHSUrRRtjHdTTvPVCg9EWaX53u8MAFf`nf2S9+6+CdrvKe3+IOppI5cfFZtw4rLWqhrg5tVI7JLIVjx2ioZ5cvR6tzNKKGJcw`nD71vrqGWY6BuGRCaVOGAL/grmw3p4EPGPyxmDCsAsWztdWx9EyHNKtI8zfCFEWBx`noGDHjMYUEtF+acVJAhAb7dqgQ8RTebIuQipxlpSLC7BZMHm72SE2TqixIWLSsgAJ`n7NMv0PhReU+payF+3JsKgZRXkIaD/hgdh/Lz2Cr5iEOKAes1Rh2j6Wx9BYrY7Sbi`ncOfOXduCKQ04siLr1JGt8ZdsmCRhM7GavgtF+WsZav1kCHotVDsVJD1VOQOIdxMQ`n1i2AFC69JTIl395UtO4MaKxNO8lbTF9lefOjp80q+HailSbkJpOvrRBG1S3k5PmE`n3d9rSpiJtcLimKRfGrdYh68CAwEAAQ==`n-----END PUBLIC KEY-----" | Out-File public.pem -Encoding ascii;
-            openssl dgst -sha512 -verify public.pem -signature ldc2-version.txt.sig ldc2-version.txt;
-            openssl dgst -sha512 -verify public.pem -signature template/powershell/install-ldc2.ps1.sig template/powershell/install-ldc2.ps1;
+            (Get-ChildItem -Recurse -File -include *.ps1,*.sh,*.conf,*.yml,*.txt).FullName | ForEach-Object { openssl dgst -sha512 -verify public.pem -signature $_'.sig' $_; }
 
         - name: Dlang versions
           id: dlang-versions

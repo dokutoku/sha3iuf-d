@@ -1,7 +1,8 @@
 # sha3iuf-d
 
-This library is a port of [SHA3IUF](https://github.com/brainhub/SHA3IUF), a library for calculating SHA3, to the D language.
+[![Cross-Compiling](https://github.com/dokutoku/sha3iuf-d/actions/workflows/cross-compiling.yml/badge.svg)](https://github.com/dokutoku/sha3iuf-d/actions/workflows/cross-compiling.yml)
 
+This library is a port of [SHA3IUF](https://github.com/brainhub/SHA3IUF), a library for calculating SHA3, to the D language.
 
 ## Usage
 

@@ -460,12 +460,13 @@ public .sha3_return_t sha3_HashBuffer(uint bitSize, .SHA3_FLAGS flags, scope con
 
 		.sha3_Update(&c, in_, inBytes);
 		const void* h = .sha3_Finalize(&c);
+		uint out_length = bitSize / 8;
 
-		if (outBytes > (bitSize / 8)) {
-			outBytes = bitSize / 8;
+		if (outBytes < out_length) {
+			return .SHA3_RETURN.SHA3_RETURN_BAD_PARAMS;
 		}
 
-		out_[0 .. outBytes] = h[0 .. outBytes];
+		out_[0 .. out_length] = h[0 .. out_length];
 
 		return .SHA3_RETURN.SHA3_RETURN_OK;
 	}

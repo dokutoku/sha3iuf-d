@@ -48,19 +48,19 @@ typedef struct sha3_context_
 	 * 0..7--the next byte after the set one
 	 * (starts from 0; 0--none are buffered)
 	 */
-	uint8_t byteIndex;
+	uint32_t byteIndex;
 
 	/*
 	 * 0..24--the next word to integrate input
 	 * (starts from 0)
 	 */
-	uint8_t wordIndex;
+	uint32_t wordIndex;
 
 	/*
 	 * the double size of the hash output in
 	 * words (e.g. 16 for Keccak 512)
 	 */
-	uint8_t capacityWords;
+	uint32_t capacityWords;
 } sha3_context;
 
 enum SHA3_FLAGS
@@ -78,7 +78,7 @@ enum SHA3_RETURN
 typedef enum SHA3_RETURN sha3_return_t;
 
 /* For Init or Reset call these: */
-sha3_return_t sha3_Init(void* priv, uint8_t bitSize);
+sha3_return_t sha3_Init(void* priv, uint32_t bitSize);
 
 void sha3_Init256(void* priv);
 void sha3_Init384(void* priv);
@@ -91,9 +91,9 @@ void sha3_Update(void* priv, void const* bufIn, size_t len);
 void const* sha3_Finalize(void* priv);
 
 /* Single-call hashing */
-sha3_return_t sha3_HashBuffer(uint8_t bitSize, /* 256, 384, 512 */
+sha3_return_t sha3_HashBuffer(uint32_t bitSize, /* 256, 384, 512 */
                               enum SHA3_FLAGS flags, /* SHA3_FLAGS_NONE or SHA3_FLAGS_KECCAK */
-                              const void* in_, uint8_t inBytes, void* out_, uint8_t outBytes); /* up to bitSize/8; truncation OK */
+                              const void* in_, size_t inBytes, void* out_, uint32_t outBytes); /* up to bitSize/8; truncation OK */
 
 #ifdef __cplusplus
 }

@@ -437,7 +437,7 @@ public const (void)* sha3_Finalize(return scope void* priv)
  */
 extern (C)
 pure nothrow @trusted @nogc @live
-public .sha3_return_t sha3_HashBuffer(uint bitSize, .SHA3_FLAGS flags, scope const void* in_, uint inBytes, return scope void* out_, uint outBytes)
+public .sha3_return_t sha3_HashBuffer(uint bitSize, .SHA3_FLAGS flags, scope const void* in_, size_t inBytes, return scope void* out_, uint outBytes)
 
 	in
 	{

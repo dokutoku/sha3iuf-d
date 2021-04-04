@@ -20,11 +20,6 @@
 			"targetType": "library"
 		},
 		{
-			"name": "betterC-library",
-			"targetPath": "lib",
-			"targetType": "library"
-		},
-		{
 			"name": "source",
 			"targetType": "sourceLibrary"
 		}

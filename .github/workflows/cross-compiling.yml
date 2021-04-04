@@ -129,18 +129,18 @@ jobs:
           if: ${{ (matrix.dub-arch == 'x86') || (matrix.dub-arch == 'x86_mscoff') }}
           shell: cmd
           run: |
-            call vc_init.bat && C:\D\dmd2\windows\bin\dub.exe test --force --combined --build-mode=allAtOnce --config=library --arch=x86_mscoff --build=${{ matrix.build-type }} --compiler=C:\D\dmd2\windows\bin\dmd.exe && C:\D\dmd2\windows\bin\dub.exe build --force --combined --build-mode=allAtOnce --config=betterC-library --arch=x86_mscoff --build=${{ matrix.build-type }} --compiler=C:\D\dmd2\windows\bin\dmd.exe
+            call vc_init.bat && C:\D\dmd2\windows\bin\dub.exe test --force --combined --build-mode=allAtOnce --config=library --arch=x86_mscoff --build=${{ matrix.build-type }} --compiler=C:\D\dmd2\windows\bin\dmd.exe
 
         - name: dmd build
           if: ${{ (matrix.dub-arch != 'x86') && (matrix.dub-arch != 'x86_mscoff') }}
           shell: cmd
           run: |
-            call vc_init.bat && C:\D\dmd2\windows\bin\dub.exe test --force --combined --build-mode=allAtOnce --config=library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=C:\D\dmd2\windows\bin\dmd.exe && C:\D\dmd2\windows\bin\dub.exe build --force --combined --build-mode=allAtOnce --config=betterC-library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=C:\D\dmd2\windows\bin\dmd.exe
+            call vc_init.bat && C:\D\dmd2\windows\bin\dub.exe test --force --combined --build-mode=allAtOnce --config=library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=C:\D\dmd2\windows\bin\dmd.exe
 
         - name: ldc2 build
           shell: cmd
           run: |
-            call vc_init.bat && C:\ldc2\bin\dub.exe test --force --combined --build-mode=allAtOnce --config=library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=C:\ldc2\bin\ldc2.exe && C:\ldc2\bin\dub.exe build --force --combined --build-mode=allAtOnce --config=betterC-library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=C:\ldc2\bin\ldc2.exe
+            call vc_init.bat && C:\ldc2\bin\dub.exe test --force --combined --build-mode=allAtOnce --config=library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=C:\ldc2\bin\ldc2.exe
 
 #        - name: build example
 #          run: |
@@ -260,12 +260,10 @@ jobs:
         - name: dmd build
           run: |
             dub test --force --combined --build-mode=allAtOnce --config=library --build=${{ matrix.build-type }};
-            dub build --force --combined --build-mode=allAtOnce --config=betterC-library --build=${{ matrix.build-type }};
 
         - name: ldc2 build
           run: |
             /Users/runner/ldc2/bin/dub test --force --combined --build-mode=allAtOnce --config=library --arch=x86_64 --build=${{ matrix.build-type }} --compiler=/Users/runner/ldc2/bin/ldc2;
-            /Users/runner/ldc2/bin/dub build --force --combined --build-mode=allAtOnce --config=betterC-library --arch=x86_64 --build=${{ matrix.build-type }} --compiler=/Users/runner/ldc2/bin/ldc2;
 
         - name: build example
           run: |
@@ -398,12 +396,10 @@ jobs:
         - name: dmd build
           run: |
             dub test --force --combined --build-mode=allAtOnce --config=library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }};
-            dub build --force --combined --build-mode=allAtOnce --config=betterC-library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }};
 
         - name: ldc2 build
           run: |
             /home/runner/ldc2/bin/dub test --force --combined --build-mode=allAtOnce --config=library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=/home/runner/ldc2/bin/ldc2;
-            /home/runner/ldc2/bin/dub build --force --combined --build-mode=allAtOnce --config=betterC-library --arch=${{ matrix.dub-arch }} --build=${{ matrix.build-type }} --compiler=/home/runner/ldc2/bin/ldc2;
             /home/runner/ldc2/bin/dub build --force --combined --build-mode=allAtOnce --config=wasm32 --arch=wasm32-unknown-unknown-webassembly --build=${{ matrix.build-type }} --compiler=/home/runner/ldc2/bin/ldc2;
 
         - name: build example

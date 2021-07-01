@@ -76,12 +76,26 @@ public enum SHA3_FLAGS
 	SHA3_FLAGS_KECCAK = 1,
 }
 
+//Declaration name in C language
+public enum
+{
+	SHA3_FLAGS_NONE = .SHA3_FLAGS.SHA3_FLAGS_NONE,
+	SHA3_FLAGS_KECCAK = .SHA3_FLAGS.SHA3_FLAGS_KECCAK,
+}
+
 ///
 extern (C)
 public enum SHA3_RETURN
 {
 	SHA3_RETURN_OK = 0,
 	SHA3_RETURN_BAD_PARAMS = 1,
+}
+
+//Declaration name in C language
+public enum
+{
+	SHA3_RETURN_OK = .SHA3_RETURN.SHA3_RETURN_OK,
+	SHA3_RETURN_BAD_PARAMS = .SHA3_RETURN.SHA3_RETURN_BAD_PARAMS,
 }
 
 ///

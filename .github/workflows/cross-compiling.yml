@@ -156,7 +156,7 @@ jobs:
 #                example/sha3sum.exe
 
     MacOS:
-        runs-on: macos-10.15
+        runs-on: macos-latest
 
         strategy:
             matrix:
@@ -281,7 +281,7 @@ jobs:
                 example/sha3sum
 
     Other_Platforms:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
 
         strategy:
             matrix:
